@@ -1,0 +1,44 @@
+<!-- <nav class="navbar navbar-light bg-light"> -->
+<nav class="navbar bg-dark">
+  <span class="navbar-brand mb-0 h1" style="color:white">Inventory Management System</span>
+</nav>
+<div class="command-box">
+<div class="form-row">
+	<div class="col-12">
+		<label style="font-weight:bolder">Enter the command</label>
+		<input class="form-control" type="text" [(ngModel)] = "inputValue" [name]="'input_command'">
+		<button type="button" class="btn btn-primary" (click)="getCommand(inputValue)">Click</button>
+	</div>
+	<p *ngIf = "alreadyExists" style="color:red">Item already exists! Update the item or create a new one</p>
+	<p *ngIf = "showMessage" style="color:green">{{toastMessage}}</p>
+	<p style="color:red">{{message}}</p>
+</div>
+</div>
+<br>
+<br>
+<br>
+<div *ngIf = "report" class="table-box">
+<table class="table table-bordered">
+	<thead>
+		<tr>
+		<th scope="col">Item Name</th>
+		<th scope="col">Bought At</th>
+		<th scope="col">Sold At</th>
+		<th scope="col">Available Quantity</th>
+		<th scope="col">Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor = "let inventory of storeInventory">
+			<td>{{inventory.itemName}}</td>
+			<td>{{inventory.costPrice | number : '1.2-2'}}</td>
+			<td>{{inventory.sellingPrice | number : '1.2-2'}}</td>
+			<td>{{inventory.quantity}}</td>
+			<td>{{inventory.value | number : '1.2-2'}}</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<h4>Total Value {{value | number : '1.2-2'}}</h4>
+<h4>Profit from last report {{profitFromLastReport | number : '1.2-2'}}</h4>
+</div>
